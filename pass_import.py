@@ -481,7 +481,7 @@ class PasswordManager():
         """Convert invalid caracters by the separator in a string."""
         caracters = dict(zip(self.invalids,
                              [self.separator] * len(self.invalids)))
-        return self._replaces(caracters, string)
+        return self._replaces(caracters, string).replace("'", "")
 
     def _clean_title(self, string):
         """Clean the title from separator before addition to a path."""
