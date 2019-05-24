@@ -395,6 +395,7 @@ class PasswordManager():
     format = None
     keyslist = ['title', 'password', 'login', 'url', 'comments', 'otpauth',
                 'group']
+    keyspretty = {'login': 'User', 'url': 'URL', 'comments': 'Notes'}
 
     def __init__(self, extra=False, separator='-', cleans=None,
                  protocols=None, invalids=None, cols=''):
@@ -448,7 +449,7 @@ class PasswordManager():
                 if 'otpauth' in key:
                     string += "%s\n" % entry.pop(key)
                 else:
-                    string += "%s: %s\n" % (key, entry.pop(key))
+                    string += "%s: %s\n" % (self.keyspretty.get(key, key), entry.pop(key))
 
         if self.all:
             for key, value in entry.items():
@@ -1727,6 +1728,10 @@ class Revelation(PasswordManagerXML):
             'email': 'generic-email', 'phone': 'phone-phonenumber',
             'location': 'generic-location', 'description': 'description',
             'comments': 'notes'}
+    keyspretty = {'login': 'User', 'database': 'Database', 'host': 'Host',
+                  'port': 'Port', 'url': 'URL', 'email': 'EMail',
+                  'phone': 'Phone', 'location': 'Location',
+                  'description': 'Description', 'comments': 'Notes'}
 
     @classmethod
     def _getvalue(cls, element):
